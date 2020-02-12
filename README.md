@@ -1,4 +1,4 @@
-# Ejemplos-Vue
+# Vue Structure
 
 ## Project setup
 ```
