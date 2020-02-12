@@ -4,7 +4,8 @@ import Frutas from "../views/Frutas.vue";
 
 Vue.use(VueRouter);
 
-const routes = [{
+const routes = [
+  {
     path: "/frutas",
     name: "Frutas",
     component: Frutas
@@ -16,13 +17,13 @@ const routes = [{
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import( /* webpackChunkName: "servicios" */ "../views/Servicios.vue")
+      import(/* webpackChunkName: "servicios" */ "../views/Servicios.vue")
   },
   {
     path: "/fotos/:id",
     name: "fotos",
     component: () =>
-      import( /* webpackChunkName: "fotos" */ "../views/Fotos.vue")
+      import(/* webpackChunkName: "fotos" */ "../views/Fotos.vue")
   }
 ];
 

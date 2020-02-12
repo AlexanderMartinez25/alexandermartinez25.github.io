@@ -8,9 +8,7 @@
         class="list-group-item d-flex justify-content-between align-items-center"
       >
         {{ index }} - {{ item.nombre }}
-        <span
-          class="badge badge-primary badge-pill"
-        >{{ item.cantidad }}</span>
+        <span class="badge badge-primary badge-pill">{{ item.cantidad }}</span>
       </li>
     </ul>
     <button class="btn btn-danger mt-3" @click="reiniciar">Reiniciar</button>
