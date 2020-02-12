@@ -2,9 +2,12 @@
   <div id="app">
     <div id="nav">
       <router-link to="/frutas">Frutas</router-link>|
-      <router-link to="/servicios">Servicios</router-link>
+      <router-link to="/servicios">Servicios</router-link>|
+      <router-link to="/fotos/1">Fotos</router-link>
     </div>
-    <router-view />
+    <div class="container">
+      <router-view />
+    </div>
   </div>
 </template>
 
