@@ -1,35 +1,38 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/frutas">Frutas</router-link>|
-      <router-link to="/servicios">Servicios</router-link>|
-      <router-link to="/fotos/1">Fotos</router-link>
-    </div>
-    <div class="container">
-      <router-view />
-    </div>
+    <b-navbar toggleable="lg" type="dark" variant="danger">
+      <b-container>
+        <b-navbar-brand :to="{ name: 'frutas' }">NavBar</b-navbar-brand>
+
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+        <b-collapse id="nav-collapse" is-nav>
+          <b-navbar-nav>
+            <b-nav-item :to="{ name: 'frutas' }">Frutas</b-nav-item>
+            <b-nav-item :to="{ name: 'fotos' }">Fotos</b-nav-item>
+          </b-navbar-nav>
+        </b-collapse>
+      </b-container>
+    </b-navbar>
+
+    <transition name="fade" mode="out-in">
+      <b-container>
+        <router-view />
+      </b-container>
+    </transition>
   </div>
 </template>
 
 <style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+.fade-enter-active {
+  transition: all 0.1s ease;
 }
-
-#nav {
-  padding: 30px;
+.fade-leave-active {
+  transition: all 0.4s cubic-bezier(1, 0.5, 0.4, 1);
 }
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.fade-enter, .fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
 }
 </style>
