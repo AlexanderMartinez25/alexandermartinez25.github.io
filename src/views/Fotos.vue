@@ -27,9 +27,9 @@ export default {
   data() {
     return {
       fotosAreglos: [
-        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
-        "https://images.unsplash.com/photo-1505826759037-406b40feb4cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=752&q=80",
-        "https://images.unsplash.com/photo-1458642849426-cfb724f15ef7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
+        "https://i.picsum.photos/id/110/500/200.jpg",
+        "https://i.picsum.photos/id/250/500/200.jpg",
+        "https://i.picsum.photos/id/378/500/200.jpg"
       ]
     };
   },

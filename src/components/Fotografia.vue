@@ -36,8 +36,6 @@ export default {
   props: ["fotos"],
   methods: {
     imagen() {
-      console.log(this.$route.params.id);
-
       return this.$route.params.id ? this.$route.params.id : 0;
     }
   }

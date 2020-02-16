@@ -1,38 +1,56 @@
 <template>
-  <div id="app">
-    <b-navbar toggleable="lg" type="dark" variant="danger">
-      <b-container>
-        <b-navbar-brand :to="{ name: 'frutas' }">NavBar</b-navbar-brand>
+  <v-app>
+    <v-app-bar app color="primary" dark>
+      <div class="d-flex align-center">
+        <v-img
+          alt="Vuetify Logo"
+          class="shrink mr-2"
+          contain
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          transition="scale-transition"
+          width="40"
+        />
 
-        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+        <v-img
+          alt="Vuetify Name"
+          class="shrink mt-1 hidden-sm-and-down"
+          contain
+          min-width="100"
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
+          width="100"
+        />
+      </div>
 
-        <b-collapse id="nav-collapse" is-nav>
-          <b-navbar-nav>
-            <b-nav-item :to="{ name: 'frutas' }">Frutas</b-nav-item>
-            <b-nav-item :to="{ name: 'fotos' }">Fotos</b-nav-item>
-          </b-navbar-nav>
-        </b-collapse>
-      </b-container>
-    </b-navbar>
+      <v-spacer></v-spacer>
 
-    <b-container>
-      <transition name="fade" mode="out-in">
-        <router-view />
-      </transition>
-    </b-container>
-  </div>
+      <v-btn
+        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        target="_blank"
+        text
+      >
+        <span class="mr-2">Latest Release</span>
+        <v-icon>mdi-open-in-new</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-content>
+      <HelloWorld />
+    </v-content>
+  </v-app>
 </template>
 
-<style>
-.fade-enter-active {
-  transition: all 0.1s ease;
-}
-.fade-leave-active {
-  transition: all 0.4s cubic-bezier(1, 0.5, 0.4, 1);
-}
-.fade-enter,
-.fade-leave-to {
-  transform: translateX(10px);
-  opacity: 0;
-}
-</style>
+<script>
+import HelloWorld from "./components/HelloWorld";
+
+export default {
+  name: "App",
+
+  components: {
+    HelloWorld
+  },
+
+  data: () => ({
+    //
+  })
+};
+</script>
