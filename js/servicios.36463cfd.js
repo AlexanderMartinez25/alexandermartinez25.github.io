@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["servicios"],{"0f4c":function(e,t,n){"use strict";n.r(t);var s=function(){var e=this,t=e.$createElement;e._self._c;return e._m(0)},c=[function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",{staticClass:"mt-5"},[n("h1",[e._v("Servicios")])])}],i=n("2877"),r={},l=Object(i["a"])(r,s,c,!1,null,null,null);t["default"]=l.exports}}]);
+//# sourceMappingURL=servicios.36463cfd.js.map
