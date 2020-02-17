@@ -1,8 +1,7 @@
 <template>
-  <div class="container">
+  <div>
     <Cabecera />
     <Lista />
-    <v-btn color="warning" dark>Normal Button</v-btn>
   </div>
 </template>
 
