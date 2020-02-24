@@ -7,114 +7,100 @@
     >
       <v-skeleton-loader
         class="mx-auto"
-        max-width="600"
-        type="card-heading,text,card,avatar"
+        max-width="500"
+        type="card-heading,list-item,card,avatar"
       ></v-skeleton-loader>
     </v-sheet>
 
     <div v-else>
       <v-container fluid>
         <v-row dense>
-          <v-col
-            cols="8"
-            class="mx-auto"
-            v-for="(partido, index) in masReciente"
-            :key="index"
-          >
+          <v-col md="6" xs="12" class="mx-auto">
             <v-card>
-              <v-list-item two-line>
-                <v-list-item-content>
-                  <v-list-item-title class="headline">
-                    {{ partido.title }}
-                  </v-list-item-title>
+              <v-expansion-panels accordion hover>
+                <v-expansion-panel v-for="(partido, index) in partidos" :key="index" >
+                  
+                  <v-expansion-panel-header disable-icon-rotate>
 
-                  <v-list-item-subtitle class="text-capitalize"
-                    >{{ partido.date | date }}
-                  </v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
+                    <template v-slot:actions>
+                      <v-icon color="error">far fa-eye</v-icon>
+                    </template>
 
-              <v-img
-                class="white--text align-end"
-                height="280px"
-                :src="partido.thumbnail"
-              >
-                <div class="absolute">
-                  <v-btn icon x-large color="error">
-                    <v-icon large>fas fa-play</v-icon>
-                  </v-btn>
-                </div>
-              </v-img>
+                    <v-list-item two-line>
+                      <v-list-item-content>
+                        <v-list-item-title class="headline">
+                          {{ partido.title }}
+                        </v-list-item-title>
 
-              <v-card-title class="pb-0">Highlights</v-card-title>
+                        <v-list-item-subtitle class="text-capitalize"
+                          >{{ partido.date | date }}
+                        </v-list-item-subtitle>
+                      </v-list-item-content>
+                    </v-list-item>
 
-              <v-container class="pt-0" fluid>
-                <v-row>
-                  <v-col cols="3" md="2">
-                    <div class="text-center">
-                      <v-progress-circular
-                        size="50"
-                        width="2"
-                        color="error"
-                        indeterminate
+                  </v-expansion-panel-header>
+
+                  <v-expansion-panel-content>
+                    <v-img
+                      v-if="embed.length < 1"
+                      class="white--text align-end"
+                      height="280px"
+                      :src="partido.thumbnail"
+                    >
+                      <div
+                        @click="reproducir(partido.videos[0].embed)"
+                        class="text-center absolute"
                       >
-                        <v-avatar size="50">
-                          <img
-                            class="video-img"
-                            src="https://cdn.vuetifyjs.com/images/john.jpg"
-                            alt="John"
-                          />
-                        </v-avatar>
-                      </v-progress-circular>
-                      <p class="subtitle-2">holaaa</p>
-                    </div>
-                  </v-col>
+                        <v-btn icon x-large color="error">
+                          <v-icon large>fas fa-play</v-icon>
+                        </v-btn>
+                      </div>
+                    </v-img>
+                    <span v-else v-html="embed"> </span>
 
-                  <v-col cols="3" md="2">
-                    <div class="text-center">
-                      <v-avatar color="error" size="50">
-                        <img
-                          class="video-img"
-                          src="https://cdn.vuetifyjs.com/images/john.jpg"
-                          alt="John"
-                        />
-                      </v-avatar>
-                      <p class="subtitle-2">holaaa</p>
-                    </div>
-                  </v-col>
+                    <v-card-title>{{ tituloVideo }}</v-card-title>
 
-                  <v-col cols="3" md="2">
-                    <div class="text-center">
-                      <v-avatar color="error" size="50">
-                        <img
-                          class="video-img"
-                          src="https://cdn.vuetifyjs.com/images/john.jpg"
-                          alt="John"
-                        />
-                      </v-avatar>
-                      <p class="subtitle-2">holaaa</p>
-                    </div>
-                  </v-col>
-                </v-row>
-              </v-container>
+                    <v-container class="py-0 px-5" fluid>
+                      <v-card class="d-flex flex-row mr-4" flat tile>
+                        <div
+                          v-for="(momentoDestacado, index) in partido.videos"
+                          :key="index"
+                          class="text-center mr-4"
+                        >
+                          <v-btn
+                            text
+                            icon
+                            color="indigo"
+                            @click="showTitulo(momentoDestacado.title)"
+                          >
+                            <v-progress-circular
+                              size="50"
+                              width="2"
+                              color="error"
+                              indeterminate
+                            >
+                              <v-avatar size="50">
+                                <img
+                                  class="video-img"
+                                  :src="partido.thumbnail"
+                                  alt="John"
+                                />
+                              </v-avatar>
+                            </v-progress-circular>
+                          </v-btn>
+                          <p class="subtitle-2 mt-4">
+                            {{ momentoDestacado.title }}
+                          </p>
+                        </div>
+                      </v-card>
+                    </v-container>
 
-              <v-card-subtitle class="pb-0">Number 10</v-card-subtitle>
-
-              <v-card-text class="text--primary">
-                <div>Whitehaven Beach</div>
-
-                <div>Whitsunday Island, Whitsunday Islands</div>
-              </v-card-text>
-
-              <v-card-actions>
-                <v-btn color="orange" text>
-                  Share
-                </v-btn>
-
-                <v-btn color="orange" text>
-                  Explore
-                </v-btn>
-              </v-card-actions>
+                    <v-card-subtitle class="pt-0 error--text">
+                      {{ partido.competition.name }}
+                    </v-card-subtitle>
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
+              </v-expansion-panels>
             </v-card>
           </v-col>
         </v-row>
@@ -126,11 +112,15 @@
 <script>
 import axios from "axios";
 import moment from "moment";
+import _ from "lodash";
+
 export default {
   data() {
     return {
       partidos: [],
-      loaded: false
+      loaded: false,
+      embed: [],
+      tituloVideo: ""
     };
   },
   mounted() {
@@ -139,18 +129,45 @@ export default {
       .then(response => {
         this.loaded = true;
         this.partidos = response.data;
+        this.tituloVideo = response.data[0].videos[0].title;
+        // this.videos = _.mapValues(this.partidos, "videos");
       })
       .catch(error => console.log(error));
   },
   computed: {
     masReciente() {
-      return this.partidos.slice(0, 1);
+      return _.slice(this.partidos, 0, 1);
+    }
+    // primeros() {
+    //   return _.slice(this.partidos, 0, 3);
+    // }
+    // galleryVideos() {
+    //   let arrVideos = _.mapValues(this.primeros, "videos");
+    //  _.forEach(this.partidos, function(value,key) {
+    //       console.log(value.embed);
+
+    //        this.videos.push({
+    //            'id': key,
+    //            'embed': value.embed
+    //        }
+    //        );
+    //     });
+
+    //   return _.mapValues(arrVideos, "embed");
+    // }
+  },
+  methods: {
+    reproducir(video) {
+      this.embed = video;
+    },
+    showTitulo(title) {
+      this.tituloVideo = title;
     }
   },
   filters: {
     date(fecha) {
       moment.locale("es");
-      return moment(fecha).format("dddd, MMMM - YYYY, h:mm a");
+      return moment(fecha).format("dddd, D MMMM - YYYY, h:mm a");
     }
   },
   inject: ["theme"]
@@ -158,25 +175,20 @@ export default {
 </script>
 
 <style scoped>
-.v-card {
-  transition: opacity 0.4s ease-in-out;
-}
-.v-card {
+.v-card .v-icon {
+  transition: opacity 0.1s ease-in-out;
   opacity: 0.6;
 }
-
-.v-card:hover {
+.v-card .v-icon:hover {
   opacity: 1;
 }
 .video-img {
   border: 5px solid #ffffff00;
 }
 .absolute {
-  top: 65px;
   position: absolute;
-  z-index: 100;
-  right: 0;
-  margin: auto;
+  top: 110px;
   left: 0;
+  right: 0;
 }
 </style>

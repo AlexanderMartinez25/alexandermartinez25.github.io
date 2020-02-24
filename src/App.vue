@@ -1,30 +1,40 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
+    <v-navigation-drawer
+      v-model="drawer"
+      :clipped="$vuetify.breakpoint.mdAndUp"
+      app
+    >
+      <v-list dense>
+        <v-list-item
+          link
+          v-for="(link, index) in links"
+          :key="index"
+          :to="link.ruta"
+        >
+          <v-list-item-icon>
+            <v-icon>{{ link.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title> {{ link.texto }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+    <v-app-bar
+      :clipped-left="$vuetify.breakpoint.mdAndUp"
+      app
+      color="primary"
+      dark
+    >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Ejemplos Vue</v-toolbar-title>
     </v-app-bar>
 
-    <v-navigation-drawer app v-model="drawer" temporary light>
-      <v-list-item
-        link
-        v-for="(link, index) in links"
-        :key="index"
-        :to="link.ruta"
-      >
-        <v-list-item-icon>
-          <v-icon>{{ link.icon }}</v-icon>
-        </v-list-item-icon>
-
-        <v-list-item-content>
-          <v-list-item-title> {{ link.texto }}</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-    </v-navigation-drawer>
-
     <v-content>
       <v-container class="p-4" fluid>
-        <router-view></router-view>
+        <router-view> </router-view>
       </v-container>
     </v-content>
   </v-app>
